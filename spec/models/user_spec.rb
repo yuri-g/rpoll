@@ -1,10 +1,23 @@
 require 'spec_helper'
 
 describe User do
+  let(:user) { create(:user) }
+  let(:invalid_user) { build(:user, password: '', username: '', email: '') }
+
+  describe '#vote' do
+    let(:poll) { build(:poll) }
+    context 'single choice' do
+      it 'creates a vote' do
+        options = [poll.options.first.id]
+        user.vote(options, poll)
+        expected_vote = Vote.new(user_id: user, poll_id: poll, option_id: options[0])
+        new_vote = Votes.where(user_id: user, poll_id: poll, option_id: op)
+        expect(new_vote).to eq(expected_vote)
+      end
+    end
+  end
 
   describe 'creation' do
-    let(:user) { build(:user) }
-    let(:invalid_user) { build(:user, password: '', username: '', email: '') }
 
     context 'valid attributes' do
       it 'should be valid' do

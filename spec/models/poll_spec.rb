@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Poll do
+
   describe 'creation' do
     let(:poll) { create(:poll) }
     let(:empty_poll) { build(:poll, options: [], name: '') }
