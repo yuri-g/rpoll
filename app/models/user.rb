@@ -5,7 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates_presence_of :email, :username, :password
 
+  has_many :votes
+  has_many :polls
   def vote(options, poll)
-    
+    options.each do |o|
+      Vote.create(option_id: o, poll_id: poll, user_id: self.id)
+    end
   end
 end
