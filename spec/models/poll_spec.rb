@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Poll do
   describe 'creation' do
-    let(:poll) { build(:poll) }
-    let(:empty_poll) { build(:poll, name: '') }
+    let(:poll) { create(:poll) }
+    let(:empty_poll) { build(:poll, options: [], name: '') }
+
     context 'valid attributes' do
       it 'should be valid' do
         expect(poll).to be_valid

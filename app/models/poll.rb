@@ -1,3 +1,4 @@
 class Poll < ActiveRecord::Base
-  validates_presence_of :name
+  has_many :options
+  validates_presence_of :options, :name
 end
