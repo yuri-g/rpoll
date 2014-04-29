@@ -9,11 +9,13 @@ class User < ActiveRecord::Base
   has_many :polls
 
   def vote!(options, poll)
-    if self.voted?(poll)
+    if self.voted?(poll) || (!poll.multiple_options && options.length > 1)
       false
     else
       votes_array = options.each_with_object([]) do |o, arr|
-        arr.push Vote.create(option: o, poll: poll, user: self)
+        vote = Vote.create(option: o, poll: poll, user: self)
+        poll.votes << vote
+        arr.push vote
       end
       votes_array
     end

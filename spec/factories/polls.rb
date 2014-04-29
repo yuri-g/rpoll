@@ -9,7 +9,7 @@ FactoryGirl.define do
   factory :poll do
     name 'PollName'
     description 'Description'
-    multiple_options true
+    multiple_options false
     options { |o| [o.association(:option), o.association(:option, name: 'option2')] }
   end
 
