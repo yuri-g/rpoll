@@ -6,7 +6,7 @@ class PollsController < ApplicationController
   end
 
   def index
-    @polls = Poll.order(created_at: :desc)
+    @polls = Poll.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
   end
 
   def create

@@ -7,3 +7,4 @@
         %small
           started by
           = p.user.username if p.user
+  = will_paginate @polls, renderer: BootstrapPagination::Rails

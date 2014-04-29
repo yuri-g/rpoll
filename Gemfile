@@ -12,6 +12,7 @@ gem 'turbolinks'
 gem 'devise'
 gem 'rspec'
 gem 'nested_form'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'database_cleaner', require: false
