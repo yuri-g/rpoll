@@ -4,6 +4,7 @@ class Poll < ActiveRecord::Base
   belongs_to :user
   validates :options, :name, presence: true
   validates :multiple_options, inclusion: { in: [true, false] }
+  accepts_nested_attributes_for :options
 
   def results
     total_votes = self.votes.count
