@@ -24,7 +24,14 @@ describe Poll do
     end
 
     context 'two users voted' do
-      it 'returns results array'
+      it 'returns results array' do
+        user2 = create(:user, email: 'user2@mail.com', username: 'user2')
+        user.vote!(multiple_options, poll)
+        user2.vote!([multiple_options[0]], poll)
+        results = poll.results
+        expect(results).to eq([{name: 'option1', votes: 2, percentage: 66.67},
+                               {name: 'option2', votes: 1, percentage: 33.33}])
+      end
     end
   end
 

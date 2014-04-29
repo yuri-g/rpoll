@@ -17,7 +17,7 @@ class Poll < ActiveRecord::Base
   private
 
   def percentage(count, total_count)
-    total_count != 0 ? (count.to_f/total_count.to_f)*100.0 : 0
+    total_count != 0 ? ((count.to_f/total_count.to_f)*100.0).round(2) : 0
   end
 
 end
