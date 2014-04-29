@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'devise'
 gem 'rspec'
 group :development, :test do
+  gem 'database_cleaner', require: false
   gem 'simplecov', require: false
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'spring-commands-rspec'
