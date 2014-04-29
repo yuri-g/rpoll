@@ -11,7 +11,8 @@ class Poll < ActiveRecord::Base
     self.options.each_with_object([]) do |option, arr|
       arr.push(name: option.name,
                votes: option.vote_count,
-               percentage: percentage(option.vote_count, total_votes))
+               percentage: percentage(option.vote_count, total_votes),
+               id: option.id)
     end
   end
 

@@ -1,0 +1,7 @@
+%h3= @poll.name
+= form_for @poll do |f|
+  - @poll.results.each do |result|
+    %div
+      = check_box_tag 'options[]', result[:id]
+      = "#{result[:name]}: #{pluralize(result[:votes], 'vote')} (#{result[:percentage]}%)"
+  = f.submit

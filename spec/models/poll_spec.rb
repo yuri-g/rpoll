@@ -10,16 +10,16 @@ describe Poll do
       it 'returns results array' do
         user.vote!(multiple_options, poll)
         results = poll.results
-        expect(results).to eq([{name: 'option1', votes: 1, percentage: 50},
-                               {name: 'option2', votes: 1, percentage: 50}])
+        expect(results).to eq([{name: 'option1', votes: 1, percentage: 50, id: 1},
+                               {name: 'option2', votes: 1, percentage: 50, id: 2}])
       end
     end
 
-    context 'no one has voted yet' do
+    context 'no one has voted' do
       it 'returns 0 percentage (no division by zero)' do
         results = poll.results
-        expect(results).to eq([{name: 'option1', votes: 0, percentage: 0},
-                               {name: 'option2', votes: 0, percentage: 0}])
+        expect(results).to eq([{name: 'option1', votes: 0, percentage: 0, id: 1},
+                               {name: 'option2', votes: 0, percentage: 0, id: 2}])
       end
     end
 
@@ -29,8 +29,8 @@ describe Poll do
         user.vote!(multiple_options, poll)
         user2.vote!([multiple_options[0]], poll)
         results = poll.results
-        expect(results).to eq([{name: 'option1', votes: 2, percentage: 66.67},
-                               {name: 'option2', votes: 1, percentage: 33.33}])
+        expect(results).to eq([{name: 'option1', votes: 2, percentage: 66.67, id: 1},
+                               {name: 'option2', votes: 1, percentage: 33.33, id: 2}])
       end
     end
   end
