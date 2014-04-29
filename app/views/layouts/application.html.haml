@@ -2,17 +2,26 @@
 %html
   %head
     %title
-      Rpoll
+      rPoll
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-    - if user_signed_in?
-      Logged in as
-      =current_user.email
-      = link_to 'Log out', destroy_user_session_path, method: :delete
-    - else
-      = link_to 'Sign up', new_user_registration_path
-      |
-      = link_to 'Login', new_user_session_path
-    = yield
+    %nav.navbar.navbar-default
+      .container
+        .navbar-header
+          = link_to 'rPoll', root_path, class: 'navbar-brand'
+        - if user_signed_in?
+          .nav.navbar-nav.navbar-right
+            %p.navbar-text
+              Logged in as
+              = current_user.email
+              = link_to 'Log out', destroy_user_session_path, class: 'navbar-link', method: :delete
+        - else
+          .nav.navbar-nav.navbar-right
+            %p.navbar-text
+              = link_to 'Sign up', new_user_registration_path, class: 'navbar-link'
+              |
+              = link_to 'Login', new_user_session_path, class: 'navbar-link'
+    .container
+      = yield
