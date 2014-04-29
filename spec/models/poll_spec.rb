@@ -8,7 +8,7 @@ describe Poll do
   describe '#results' do
     context 'user has voted for two options' do
       it 'returns results array' do
-        votes = user.vote!(multiple_options, poll)
+        user.vote!(multiple_options, poll)
         results = poll.results
         expect(results).to eq([{name: 'option1', votes: 1, percentage: 50},
                                {name: 'option2', votes: 1, percentage: 50}])

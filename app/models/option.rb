@@ -3,7 +3,7 @@ class Option < ActiveRecord::Base
   has_many :votes
   validates :name, presence: true
 
-  def total_votes
+  def vote_count
     self.votes.count
   end
 
