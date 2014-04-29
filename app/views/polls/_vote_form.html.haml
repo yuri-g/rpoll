@@ -1,6 +1,8 @@
 = form_for @poll do |f|
   - @poll.options.each do |option|
-    %div
-      = check_box_tag 'options[]', option.id
-      = option.name
-  = f.submit
+    .form-group
+      .checkbox
+        %label{for: "option#{option.id}"}
+          = option.name
+          = check_box_tag 'options[]', option.id, false, id: "option#{option.id}", multiple: @multiple
+  = f.submit 'Vote', class: 'btn btn-default'

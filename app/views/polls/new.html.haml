@@ -1,21 +1,24 @@
-- if @poll.errors.any?
-  %div.error_explanation
-    %h4
-      = pluralize(@poll.errors.count, "error")
+.col-lg-4
+  - if @poll.errors.any?
+    .alert.alert-danger
+      %h4= pluralize(@poll.errors.count, "error")
       prohibited this poll from being saved:
-    %ul
-      - @poll.errors.full_messages.each do |msg|
-        %li= msg
-= nested_form_for @poll do |f|
-  %div
-    = f.label :name
-    = f.text_field :name
-  %div
-    = f.label 'Allow multiple poll choices?'
-    = f.check_box :multiple_options
-  %div
-    = f.fields_for :options do |options_form|
-      = options_form.text_field :name
-      = options_form.link_to_remove 'Remove'
-    = f.link_to_add 'Add an option', :options
-  = f.submit
+      %ul
+        - @poll.errors.full_messages.each do |msg|
+          %li= msg
+  %h3 New poll
+  = nested_form_for @poll do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control', placeholder: 'Enter name'
+    .checkbox
+      %label{for: :poll_multiple_options}
+        Allow multiple poll choices?
+        = f.check_box :multiple_options
+    %div
+      = f.fields_for :options do |options_form|
+        .form-group
+          = options_form.text_field :name, class: 'form-control', placeholder: 'Enter poll option'
+          = options_form.link_to_remove 'Remove'
+      = f.link_to_add 'Add an option', :options
+    = f.submit class: 'btn btn-default'

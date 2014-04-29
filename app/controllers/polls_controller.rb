@@ -16,13 +16,18 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find(params[:id])
+    @multiple = @poll.multiple_options
   end
 
   def update
     @poll = Poll.find(params[:id])
-    chosen_options = @poll.options.find(params[:options])
-    unless current_user.vote!(chosen_options, @poll)
-      flash[:errors] = 'Something went wrong'
+    if params[:options]
+      chosen_options = @poll.options.find(params[:options])
+      unless current_user.vote!(chosen_options, @poll)
+        flash.now[:error] = 'Something went wrong'
+      end
+    else
+      flash.now[:error] = 'Choose at least one option'
     end
     render :show
   end

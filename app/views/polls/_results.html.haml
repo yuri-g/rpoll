@@ -1,4 +1,8 @@
 - @poll.results.each do |result|
   %div
-    %meter{value: result[:percentage], max: 100}
-    = "#{result[:name]}: #{result[:votes]} (#{result[:percentage]}%)"
+    = "#{result[:name]}: #{pluralize(result[:votes], 'vote')}"
+    .progress
+      .progress-bar{'role' => 'progressbar', style: "width: #{result[:percentage]}%;"}
+        = "#{result[:percentage]}%"
+%h3
+  = "Total: #{pluralize(@poll.votes.count, 'vote')}"

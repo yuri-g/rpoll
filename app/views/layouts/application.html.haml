@@ -11,6 +11,8 @@
       .container
         .navbar-header
           = link_to 'rPoll', root_path, class: 'navbar-brand'
+        %p.navbar-text
+          = link_to 'Create new poll', new_poll_path, class: 'navbar-link'
         - if user_signed_in?
           .nav.navbar-nav.navbar-right
             %p.navbar-text
@@ -24,4 +26,7 @@
               |
               = link_to 'Login', new_user_session_path, class: 'navbar-link'
     .container
+      - [:notice, :error, :info, :success, :alert].each do |k|
+        - if flash[k]
+          .alert.alert-info=flash[k]
       = yield

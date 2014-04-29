@@ -1,5 +1,6 @@
-%h3= @poll.name
-- if current_user.voted?(@poll)
-  = render 'results'
-- else
-  = render 'vote_form'
+.well
+  %h3= @poll.name
+  - if current_user.voted?(@poll)
+    = render 'results'
+  - else
+    = render 'vote_form'

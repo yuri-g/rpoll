@@ -1,7 +1,9 @@
-= link_to 'Create new poll', new_poll_path
-%h2 Recent polls:
-- @polls.each do |p|
-  %div
-    %h4= link_to p.name, poll_path(p)
-    - p.options.each do |option|
-      = option.name
+.col-lg-5.col-lg-offset-3
+  %h1 Recent polls:
+  - @polls.each do |p|
+    .well
+      %h3
+        = link_to p.name, poll_path(p)
+        %small
+          started by
+          = p.user.username if p.user
