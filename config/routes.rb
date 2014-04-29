@@ -1,6 +1,8 @@
 Rpoll::Application.routes.draw do
   devise_for :users
-  root 'home#welcome'
+
+  root 'polls#index'
+
   resources :polls
   resources :votes
   # The priority is based upon order of creation: first created -> highest priority.

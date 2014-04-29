@@ -5,6 +5,10 @@ class PollsController < ApplicationController
     @poll = Poll.new
   end
 
+  def index
+    @polls = Poll.order(created_at: :desc)
+  end
+
   def create
     @poll = Poll.new(poll_params)
     @poll.user = current_user
