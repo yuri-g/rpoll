@@ -1,0 +1,4 @@
+- @poll.results.each do |result|
+  %div
+    %meter{value: result[:percentage], max: 100}
+    = "#{result[:name]}: #{result[:votes]} (#{result[:percentage]}%)"

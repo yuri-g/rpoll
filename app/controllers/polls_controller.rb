@@ -16,16 +16,15 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find(params[:id])
-    @votes = Array.new(@poll.options.count) { @poll.votes.build }
   end
 
   def update
     @poll = Poll.find(params[:id])
     chosen_options = @poll.options.find(params[:options])
-    chosen_options.each do |option|
-      Vote.create(user: current_user, option: option, poll: @poll)
+    unless current_user.vote!(chosen_options, @poll)
+      flash[:errors] = 'Something went wrong'
     end
-    render json: chosen_options
+    render :show
   end
 
   private

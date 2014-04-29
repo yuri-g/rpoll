@@ -1,6 +1,6 @@
 = link_to 'Create new poll', new_poll_path
 - @polls.each do |p|
   %div
-    = link_to p.name,rpoll_path(p)
+    = link_to p.name, poll_path(p)
     - p.options.each do |option|
       = option.name

@@ -1,0 +1,6 @@
+= form_for @poll do |f|
+  - @poll.options.each do |option|
+    %div
+      = check_box_tag 'options[]', option.id
+      = option.name
+  = f.submit
